@@ -49,10 +49,12 @@ namespace Election.Objects
                 }
             }
 
+            // finds the candidate with the most votes
             foreach (KeyValuePair<ICandidate, int> vote in votes)
             {
                 if (vote.Value > maxVotes)
                 {
+                    // the winner is the candidate with a simple majority
                     maxVotes = vote.Value;
                     this.Winner = vote.Key;
                     this.Result = "Winner";
@@ -125,12 +127,13 @@ namespace Election.Objects
                         lessVotedCandidate = vote.Key;
                     }
                 }
+                // runs sucesive counting, eliminating lessVotedCandidates and assigning their second ranked votes to the other candidates
                 RunSecondPreferenceCounting(rankedChoiceBallots, tally, lessVotedCandidate);
                 tally.Remove(lessVotedCandidate);
-                // TODO: remove ballots from less voted candidates
+                // TODO: remove ballots for less voted candidates (rankedChoiceBallots)
             }
 
-            // TODO: Test if we have ties
+            // TODO: test if we have ties
             if (minVotes == maxVotes)
             {
                 this.Winner = null;
@@ -160,7 +163,7 @@ namespace Election.Objects
                 }
             }
 
-            // iterates through the less voted ballots and sums their respective candidate's votes with rank 2 to the tally
+            // iterates through the least voted ballots and sums their respective candidate's votes with rank 2 to the tally
             foreach (RankedChoiceBallot ballot in lessVotedBallots)
             {
                 foreach (RankedChoiceVote vote in ballot.Votes)
