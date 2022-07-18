@@ -32,8 +32,8 @@ For Implementing CountVotes in SimpleElection:
  find the candidate with the most votes from the tally
  the winner is the candidate with an outright majority (50% + 1)
 
-// we can have a tie (minVotes == maxVotes)
-// we can have a split voting with many candidates (to be answered and checked with the technical lead)
+ we could have a tie (minVotes == maxVotes)
+ we could have a split voting with many candidates (to be answered and checked with the technical lead)
 
 Comments:
 
