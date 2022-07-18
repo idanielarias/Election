@@ -24,7 +24,7 @@ namespace Election.Objects
         public abstract void CountVotes();
     }
 
-    class SimpleElection : Election<SimpleBallot, SimpleVote>
+    public class SimpleElection : Election<SimpleBallot, SimpleVote>
     {
         public SimpleElection(IEnumerable<SimpleBallot> ballots, IEnumerable<ICandidate> candidates) : base(ballots, candidates) { }
 
@@ -61,7 +61,7 @@ namespace Election.Objects
         }
     }
 
-    class RankedChoiceElection : Election<RankedChoiceBallot, RankedChoiceVote>
+    public class RankedChoiceElection : Election<RankedChoiceBallot, RankedChoiceVote>
     {
         List<RankedChoiceBallot> rankedChoiceBallots = null;
         int minVotes = 0;
