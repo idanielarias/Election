@@ -17,15 +17,15 @@ namespace Election
             new SimpleCandidate(10002, "Shaun Donovan"),
             new SimpleCandidate(10003, "Kathryn Garcia"),
             new SimpleCandidate(10004, "Raymond McGuire"),
-            new SimpleCandidate(10005, "Dianne Morales"),
+            /*new SimpleCandidate(10005, "Dianne Morales"),
             new SimpleCandidate(10006, "Scott Stringer"),
             new SimpleCandidate(10007, "Maya Wiley"),
-            new SimpleCandidate(10008, "Andrew Yang")
+            new SimpleCandidate(10008, "Andrew Yang")*/
         };
 
         static void Main(string[] _)
         {
-            int numVoters = 100000;
+            int numVoters = 1000000;
             int totalVoters = numVoters + _candidates.Count;
             List<IVoter> voters = GenerateVoters(numVoters, totalVoters);
             RunSimpleElection(voters, out List<SimpleBallot> simpleBallots);
@@ -65,7 +65,10 @@ namespace Election
             RankedChoiceElection rankedChoiceElection = new RankedChoiceElection(rankedChoiceBallots, _candidates);
             ICandidate rankedChoiceWinner = new RankedChoiceElectionRunner().RunElection(rankedChoiceElection);
 
-            Console.WriteLine($"The ranked choice winner is {rankedChoiceWinner.Name}");
+            if (rankedChoiceWinner != null)
+                Console.WriteLine($"The ranked choice winner is {rankedChoiceWinner.Name}");
+            else
+                Console.WriteLine($"The ranked choice result is {rankedChoiceElection.Result} ");
         }
     }
 }
